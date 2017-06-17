@@ -11,9 +11,11 @@ class request():
             consumer_secret=sec_key,
             version="v3")
 
+
     def test_api(self):
         res = self.wcapi.get("").json()
         print res
+
 
     def test_post(self,endpoint,data):
         """
@@ -21,12 +23,9 @@ class request():
         :param data:
         :return:
         """
-        result = self.wcapi.post(endpoint, data).json()
-       # rs_code = result.status
-        rs_body = result
-       # rs_url = result.permalink
-
+        rs_body = self.wcapi.post(endpoint,data).json()
         return rs_body
+
 
     def test_get(self,endpoint):
         """
@@ -34,10 +33,23 @@ class request():
         :return:
         """
         result = self.wcapi.get(endpoint)
-        #rs_code = result.response_code
-        #rs_body = result.json()
-        #rs_url = result.url
         return result
 
-test = request()
-test.test_api()
+
+    def update(self,endpoint):
+        """
+
+        :param endpoint:
+        :return:
+        """
+        rs_body = self.wcapi.delete(endpoint)
+        return rs_body
+
+
+    def delete(self,endpoint):
+        """
+
+        :param enpoint:
+        :return:
+        """
+        res_body = self.wcapi.delete(endpoint)
